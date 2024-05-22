@@ -10,9 +10,9 @@ class AuthService
     }
 
 
-    public function login()
+    public function login($request)
     {
-        $credentials = request(['email', 'password']);
+        $credentials = $request->only(['email', 'password']);
 
         if (!auth()->attempt($credentials)) {
             return redirect()->back()->with('error', 'Authentication failed');
